@@ -1,2 +1,2 @@
 # MusicXmlGoParser
-Parses MusicXml and exports to a proprietary format used by SignalsAndSorcery.com 
+Converts MusicXml into a machine learning friendly format 
