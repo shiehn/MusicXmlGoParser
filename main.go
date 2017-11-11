@@ -1,37 +1,35 @@
 package main
 
 import (
-  "encoding/xml"
-    "fmt"
-    )
+	"encoding/xml"
+	"fmt"
+	"io/ioutil"
+	"github.com/MusicXmlGoParser/xmlparser"
+)
 
-    var personXML = []byte(`
-    <person>
-      <name>Luann Van Houten</name>
-        <addresses>
-	      <address type="secondary">
-	                <street>321 MadeUp Lane</street>
-			          <city>Shelbyville</city>
-				        </address>
-					      <address type="primary">
-					                <street>123 Fake St</street>
-							          <city>Springfield</city>
-								        </address>
-									  </addresses>
-									  </person>`)
+var personXML = []byte(`
+    `)
 
-									  type Person struct {
-									    Name      string `xml:"name"`
-									      Addresses []struct {
-									            Street string `xml:"street"`
-										          City   string `xml:"city"`
-											        Type   string `xml:"type,attr"`
-												  } `xml:"addresses>address"`
-												  }
+type Person struct {
+	Name string `xmlparser:"name"`
+	Addresses []struct {
+		Street string `xmlparser:"street"`
+		City   string `xmlparser:"city"`
+		Type   string `xmlparser:"type,attr"`
+	} `xmlparser:"addresses>address"`
+}
 
-												  func main() {
-												    var luann Person
-												      xml.Unmarshal(personXML, &luann)
-												        fmt.Println(luann)
-													}
+func main() {
 
+	xmlparser.Read()
+	xmlparser.JustATest()
+
+	personXML, err := ioutil.ReadFile("test.xmlparser")
+	if err != nil {
+		fmt.Print("XML READ ERROR!!!")
+		}
+
+	var luann Person
+	xml.Unmarshal(personXML, &luann)
+	fmt.Println(luann)
+}

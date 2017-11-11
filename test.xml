@@ -1,0 +1,13 @@
+<person>
+    <name>Luann Van Houten</name>
+    <addresses>
+        <address type="secondary">
+            <street>321 MadeUp Lane</street>
+            <city>Shelbyville</city>
+        </address>
+        <address type="primary">
+            <street>123 Fake St</street>
+            <city>Springfield</city>
+        </address>
+    </addresses>
+</person>
