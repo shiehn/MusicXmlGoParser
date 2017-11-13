@@ -11,7 +11,6 @@ var _ = Describe("Read", func() {
 
 	Context("Just a test", func() {
 		It("should be mystring", func() {
-
 			Expect(JustATest()).To(Equal("mystring"))
 		})
 	})

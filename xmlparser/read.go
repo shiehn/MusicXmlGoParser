@@ -2,6 +2,10 @@ package xmlparser
 
 import "fmt"
 
+
+
+
+
 func Read(){
 	fmt.Print("reading like a boss! \n")
 }
