@@ -27,15 +27,20 @@ type Encoding struct {
 // Part represents a part in a piece of music
 type Part struct {
 	Id       string    `xml:"id,attr"`
-	Measures []Measure `xml:"measure"`
+	Bars []Bar `xml:"measure"`
 }
 
 // Measure represents a measure in a piece of music
-type Measure struct {
-	Number int        `xml:"number,attr"`
-	Atters Attributes `xml:"attributes"`
+type Bar struct {
+	Number int          `xml:"number,attr"`
+	Atters Attributes   `xml:"attributes"`
 	Harmonies []Harmony `xml:"harmony"`
-	Notes  []Note     `xml:"note"`
+	Notes  []Note       `xml:"note"`
+	Forward Forward     `xml:"forward"`
+}
+
+type Forward struct {
+	Duration int `xml:"duration"`
 }
 
 // Attributes represents
