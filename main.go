@@ -1,10 +1,6 @@
 package main
 
 import (
-	"encoding/xml"
-	"fmt"
-	"io/ioutil"
-	"github.com/MusicXmlGoParser/xmlparser"
 )
 
 var musicXML = []byte(`
