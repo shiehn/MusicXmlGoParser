@@ -53,5 +53,21 @@ var _ = Describe("MxlDoc", func() {
 		It("should have 4 bars not including first", func(){
 			Expect(GetBarCount(xmlDoc)).To(Equal(4))
 		})
+
+		It("should return correct bar 1 chords", func(){
+			Expect(GetChords(xmlDoc, 0)).To(Equal("d-0-min7 d-1-min7"))
+		})
+
+		It("should return correct bar 2 chords", func(){
+			Expect(GetChords(xmlDoc, 1)).To(Equal("d-0-min7 d-1-min7"))
+		})
+
+		FIt("should return correct bar 3 chords", func(){
+			Expect(GetChords(xmlDoc, 2)).To(Equal("d-0-min7 d-1-min7"))
+		})
+
+		It("should return correct bar 4 chords", func(){
+			Expect(GetChords(xmlDoc, 3)).To(Equal("d-0-min7 d-1-min7"))
+		})
 	})
 })

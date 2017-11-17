@@ -35,9 +35,15 @@ type Bar struct {
 	Number int          `xml:"number,attr"`
 	Atters Attributes   `xml:"attributes"`
 	Harmonies []Harmony `xml:"harmony"`
+	HarmonyTag []HarmonyTag `xml:"harmony"`
 	Notes  []Note       `xml:"note"`
 	Forward Forward     `xml:"forward"`
 }
+
+type HarmonyTag struct {
+	Default   string `xml:"default-y,attr"`
+	Print string `xml:"print-object,attr"`
+	}
 
 type Forward struct {
 	Duration int `xml:"duration"`

@@ -18,6 +18,27 @@ func GetBarCount(musicXML MXLDoc) int {
 	return len(musicXML.Parts[0].Bars)-1
 }
 
+func GetChords(musicXML MXLDoc, index int) string {
+	fmt.Println("index %v", index)
+
+	var chords string
+
+	bar := musicXML.Parts[0].Bars[index + 1]
+	for i, tag := range bar.HarmonyTag {
+			if tag.Print == "" {
+				chords = chords + bar.Harmonies[i].Root.Pitch + "-"
+			}
+	}
+
+	//bar := musicXML.Parts[0].Bars[index + 1]
+	//fmt.Println(bar)
+	//fmt.Println(bar.HarmonyTag[0])
+	//fmt.Println(bar.HarmonyTag[1])
+	fmt.Println(chords)
+
+	return chords
+}
+
 func ParseBar(musicXML MXLDoc, index int) string {
 	index = index + 1
 	bar := musicXML.Parts[0].Bars[index]
