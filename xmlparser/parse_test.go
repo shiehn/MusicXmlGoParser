@@ -63,6 +63,14 @@ var _ = Describe("MxlDoc", func() {
 		})
 
 		FIt("should return correct bar 3 chords", func(){
+			musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_angel_eyes.xml")
+			if err != nil {
+				panic(err)
+				fmt.Print("XML READ ERROR!!!")
+			}
+
+			xml.Unmarshal(musicXML, &xmlDoc)
+
 			Expect(GetChords(xmlDoc, 2)).To(Equal("d-0-min7 d-1-min7"))
 		})
 
