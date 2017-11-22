@@ -2,7 +2,6 @@ package xmlparser
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -19,31 +18,13 @@ func GetBarCount(musicXML MXLDoc) int {
 }
 
 func GetChords(musicXML MXLDoc, index int) string {
-
-    fmt.Println("HHHHHHH")
-	fmt.Println(musicXML)
-
-
-
-	fmt.Println("index %v", index)
-	fmt.Println("LENGTH: %v", len(musicXML.Parts[0].Bars))
 	var chords string
-
-	/*
 	bar := musicXML.Parts[0].Bars[index + 1]
-	for i, tag := range bar.HarmonyTag {
+	for i, tag := range bar.Harmonies {
 			if tag.Print == "" {
-				chords = chords + bar.Harmonies[i].Root.Pitch + "-"
-			}
+				chords = chords + bar.Harmonies[i].Root.Pitch + "-" + bar.Harmonies[i].Type + "-"
+				}
 	}
-	*/
-
-	//bar := musicXML.Parts[0].Bars[index + 1]
-	//fmt.Println(bar)
-	//fmt.Println(bar.HarmonyTag[0])
-	//fmt.Println(bar.HarmonyTag[1])
-	fmt.Println(chords)
-
 	return chords
 }
 
@@ -53,7 +34,7 @@ func ParseBar(musicXML MXLDoc, index int) string {
 
 	var notes string
 	for _, note := range bar.Notes {
-/*
+		/*
 		fmt.Print("*************************** \n")
 		fmt.Print("\n")
 		fmt.Print("PITCH ---- \n")
@@ -66,26 +47,32 @@ func ParseBar(musicXML MXLDoc, index int) string {
 		fmt.Print(note.Rest)
 */
 		if strings.Contains(fmt.Sprintf("%v", note.Rest), "rest") {
-			dur := note.Duration / GetSixteenthNote(musicXML)
-			notes = notes + "{R-" + strconv.Itoa(dur) + "}"
+			//dur := note.Duration / GetSixteenthNote(musicXML)
+			notes = notes + "r-" + note.Type + "-"
 		} else {
-			dur := note.Duration / GetSixteenthNote(musicXML)
-			notes = notes + "{" + fmt.Sprintf("%v", note.Pitch.Accidental) + "-" + note.Pitch.Step + "-" + strconv.Itoa(dur) + "}"
+			//dur := note.Duration / GetSixteenthNote(musicXML)
+			sharpFlat := ""
+			if note.Pitch.Accidental == -1 {
+				sharpFlat = "b"
+			} else if note.Pitch.Accidental == 1 {
+				sharpFlat = "s"
 			}
+			notes = notes + note.Pitch.Step + sharpFlat + "-" + note.Type + "-"
+		}
 	}
 
-	fmt.Println(notes)
 	return notes
 }
 
 func Parse(musicXML MXLDoc) string {
 
+	notes := ""
 	barCount := GetBarCount(musicXML)
 	for i := 0; i < barCount; i++ {
-		ParseBar(musicXML, i)
+		notes = ParseBar(musicXML, i)
 	}
 
-	return "asdf"
+	return notes
 
 /*
 	for barIndex, bar := range musicXML.Parts[0].Bars {
