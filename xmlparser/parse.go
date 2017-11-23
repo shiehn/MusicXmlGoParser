@@ -3,6 +3,7 @@ package xmlparser
 import (
 	"fmt"
 	"strings"
+	"strconv"
 )
 
 func GetBarDuration(musicXML MXLDoc) int {
@@ -22,7 +23,15 @@ func GetChords(musicXML MXLDoc, index int) string {
 	bar := musicXML.Parts[0].Bars[index + 1]
 	for i, tag := range bar.Harmonies {
 			if tag.Print == "" {
-				chords = chords + bar.Harmonies[i].Root.Pitch + "-" + bar.Harmonies[i].Type + "-"
+
+				sharpFlat := "_"
+					if bar.Harmonies[i].Root.SharpFlat == 1 {
+						sharpFlat = "s"
+					}else if bar.Harmonies[i].Root.SharpFlat == -1 {
+						sharpFlat = "b"
+					}
+
+				chords = chords + bar.Harmonies[i].Root.RootNote + sharpFlat + "-" + bar.Harmonies[i].Type + "-"
 				}
 	}
 	return chords
@@ -56,8 +65,12 @@ func ParseBar(musicXML MXLDoc, index int) string {
 				sharpFlat = "b"
 			} else if note.Pitch.Accidental == 1 {
 				sharpFlat = "s"
+			} else {
+				sharpFlat = "_"
 			}
-			notes = notes + note.Pitch.Step + sharpFlat + "-" + note.Type + "-"
+
+			octave := strconv.Itoa(note.Pitch.Octave)
+			notes = notes + note.Pitch.Step + sharpFlat + octave +  "-" + note.Type + "-"
 		}
 	}
 

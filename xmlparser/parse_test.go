@@ -9,24 +9,22 @@ import (
 )
 
 var _ = Describe("MxlDoc", func() {
-	Context("Just a test", func() {
+	Context("Just a test xxxxx", func() {
 		var xmlDoc MXLDoc
 		BeforeEach(func(){
 			musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml")
 			if err != nil {
 				panic(err)
-				fmt.Print("XML READ ERROR!!!")
 			}
 
 			xml.Unmarshal(musicXML, &xmlDoc)
-
-			//fmt.Print(xmlDoc)
 		})
 
-		FIt("should parse all bars", func() {
+		It("should parse all bars", func() {
+
 
 			fmt.Println(Parse(xmlDoc))
-					Expect(Parse(xmlDoc)).To(Equal("r-eigth-d4-16th-a4-eight-ab4-16th-ab4-quarter-g4-eight"))
+					Expect(Parse(xmlDoc)).To(Equal("r-eighth-D_4-16th-A_4-eighth-Ab4-16th-Ab4-quarter-G_4-eighth-"))
 		})
 	})
 
@@ -57,19 +55,19 @@ var _ = Describe("MxlDoc", func() {
 		})
 
 		It("should return correct bar 1 chords", func(){
-			Expect(GetChords(xmlDoc, 0)).To(Equal("d-0-min7 d-1-min7"))
+			Expect(GetChords(xmlDoc, 0)).To(Equal("D_-minor-seventh-E_-dominant-"))
 		})
 
 		It("should return correct bar 2 chords", func(){
-			Expect(GetChords(xmlDoc, 1)).To(Equal("d-0-min7 d-1-min7"))
+			Expect(GetChords(xmlDoc, 1)).To(Equal("D_-minor-Bb-dominant-"))
 		})
 
 		It("should return correct bar 3 chords", func(){
-			Expect(GetChords(xmlDoc, 2)).To(Equal("d-0-min7 d-1-min7"))
+			Expect(GetChords(xmlDoc, 2)).To(Equal("B_-minor-seventh-"))
 		})
 
 		It("should return correct bar 4 chords", func(){
-			Expect(GetChords(xmlDoc, 3)).To(Equal("d-0-min7 d-1-min7"))
+			Expect(GetChords(xmlDoc, 3)).To(Equal("E_-minor-seventh-A_-dominant-"))
 		})
 	})
 })

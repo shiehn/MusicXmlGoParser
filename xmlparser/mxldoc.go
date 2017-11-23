@@ -60,7 +60,8 @@ type Attributes struct {
 }
 
 type Root struct {
-	Pitch string `xml:"root-step"`
+	RootNote string `xml:"root-step"`
+	SharpFlat int `xml:"root-alter"`
 }
 
 type Harmony struct {
