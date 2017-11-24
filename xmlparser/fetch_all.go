@@ -18,7 +18,6 @@ func FetchAll() []os.FileInfo {
 		fmt.Println(f.Name())
 	}
 
-	//empty := []string{"one", "two", "three"}
 	return filterForXml(files)
 }
 

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3373dc7-56f6-4829-8534-b86c9316cf89" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/xmlparser/mxldoc.go" afterPath="$PROJECT_DIR$/xmlparser/mxldoc.go" />
+      <change beforePath="$PROJECT_DIR$/xmlparser/fetch_all.go" afterPath="$PROJECT_DIR$/xmlparser/fetch_all.go" />
       <change beforePath="$PROJECT_DIR$/xmlparser/parse.go" afterPath="$PROJECT_DIR$/xmlparser/parse.go" />
       <change beforePath="$PROJECT_DIR$/xmlparser/parse_test.go" afterPath="$PROJECT_DIR$/xmlparser/parse_test.go" />
     </list>
@@ -15,13 +14,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.36756125">
+    <splitter split-orientation="horizontal" split-proportion="0.29197994">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
           <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="80">
+                <state relative-caret-position="0">
                   <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
                   <folding />
                 </state>
@@ -38,61 +37,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="fetch_all.go" pinned="false" current-in-tab="false">
+          <file leaf-file-name="fetch_all.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/xmlparser/fetch_all.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="asset_four_bars.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/testassets/asset_four_bars.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="233">
-                  <caret line="381" column="28" lean-forward="false" selection-start-line="381" selection-start-column="28" selection-end-line="381" selection-end-column="28" />
-                  <folding>
-                    <element signature="n#defaults#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#part-list#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#measure#0;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#print#0;n#measure#0;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#attributes#0;n#measure#0;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#forward#0;n#measure#0;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#0;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#root#0;n#harmony#0;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#1;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#0;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#2;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#2;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#3;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#4;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#pitch#0;n#note#4;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#5;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#pitch#0;n#note#5;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#0;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#1;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#0;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#1;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#2;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#3;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#0;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#frame#0;n#harmony#0;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#0;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#1;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#2;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#2;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#3;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#4;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#5;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#6;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#7;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#harmony#0;n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#frame#0;n#harmony#1;n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                    <element signature="n#note#0;n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -120,7 +70,7 @@
           <file leaf-file-name="panic.go" pinned="false" current-in-tab="false">
             <entry file="file://C:/Go/src/runtime/panic.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="20">
+                <state relative-caret-position="11440">
                   <caret line="576" column="0" lean-forward="false" selection-start-line="576" selection-start-column="0" selection-end-line="576" selection-end-column="0" />
                   <folding />
                 </state>
@@ -130,8 +80,8 @@
           <file leaf-file-name="asset_one_bar.xml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/testassets/asset_one_bar.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="280">
-                  <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+                <state relative-caret-position="720">
+                  <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
                   <folding>
                     <element signature="n#score-part#0;n#part-list#0;n#score-partwise#0;n#!!top" expanded="false" />
                     <element signature="n#measure#0;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
@@ -157,11 +107,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="parse.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="parse.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/xmlparser/parse.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="305">
-                  <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+                <state relative-caret-position="390">
+                  <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
                   <folding>
                     <element signature="e#19#58#0" expanded="true" />
                   </folding>
@@ -172,18 +122,18 @@
           <file leaf-file-name="itoa.go" pinned="false" current-in-tab="false">
             <entry file="file://C:/Go/src/strconv/itoa.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
+                <state relative-caret-position="620">
                   <caret line="31" column="3" lean-forward="false" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="parse_test.go" pinned="false" current-in-tab="false">
+          <file leaf-file-name="parse_test.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/xmlparser/parse_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="545">
-                  <caret line="69" column="23" lean-forward="false" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+                <state relative-caret-position="120">
+                  <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
                   <folding>
                     <element signature="e#19#121#0" expanded="true" />
                   </folding>
@@ -204,7 +154,7 @@
           <file leaf-file-name="mxldoc.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/xmlparser/mxldoc.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="155">
+                <state relative-caret-position="1040">
                   <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
                   <folding />
                 </state>
@@ -240,13 +190,13 @@
         <option value="$PROJECT_DIR$/xmlparser/read_test.go" />
         <option value="$PROJECT_DIR$/xmlparser/read.go" />
         <option value="$PROJECT_DIR$/test_assets/asset_one_bar.xml" />
-        <option value="$PROJECT_DIR$/xmlparser/fetch_all.go" />
         <option value="$PROJECT_DIR$/xmlparser/fetch_all_test.go" />
         <option value="$PROJECT_DIR$/testassets/asset_four_bars.xml" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/xmlparser/mxldoc.go" />
-        <option value="$PROJECT_DIR$/xmlparser/parse_test.go" />
         <option value="$PROJECT_DIR$/xmlparser/parse.go" />
+        <option value="$PROJECT_DIR$/xmlparser/fetch_all.go" />
+        <option value="$PROJECT_DIR$/xmlparser/parse_test.go" />
       </list>
     </option>
   </component>
@@ -257,10 +207,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-3" />
-    <option name="y" value="3" />
-    <option name="width" value="1866" />
-    <option name="height" value="1073" />
+    <option name="x" value="-6" />
+    <option name="y" value="354" />
+    <option name="width" value="1030" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -361,16 +311,17 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="3" width="1866" height="1073" extended-state="0" />
+    <frame x="-6" y="354" width="1030" height="1092" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.073513515" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13412228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36145833" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.67395836" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39530134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33541667" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -750,14 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xmlparser/fetch_all.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xmlparser/xmlparser_suite_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -784,7 +727,7 @@
     </entry>
     <entry file="file://C:/Go/src/strconv/itoa.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="620">
           <caret line="31" column="3" lean-forward="false" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
           <folding />
         </state>
@@ -808,7 +751,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
+        <state relative-caret-position="0">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
@@ -816,8 +759,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testassets/asset_one_bar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state relative-caret-position="720">
+          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding>
             <element signature="n#score-part#0;n#part-list#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#measure#0;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
@@ -830,16 +773,24 @@
     </entry>
     <entry file="file://C:/Go/src/runtime/panic.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
+        <state relative-caret-position="11440">
           <caret line="576" column="0" lean-forward="false" selection-start-line="576" selection-start-column="0" selection-end-line="576" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xmlparser/mxldoc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1040">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testassets/asset_four_bars.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="381" column="28" lean-forward="false" selection-start-line="381" selection-start-column="28" selection-end-line="381" selection-end-column="28" />
+        <state relative-caret-position="129">
+          <caret line="282" column="39" lean-forward="false" selection-start-line="282" selection-start-column="39" selection-end-line="282" selection-end-column="39" />
           <folding>
             <element signature="n#defaults#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#part-list#0;n#score-partwise#0;n#!!top" expanded="false" />
@@ -859,14 +810,17 @@
             <element signature="n#pitch#0;n#note#4;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#5;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#pitch#0;n#note#5;n#measure#1;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
+            <element signature="n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#harmony#0;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#harmony#1;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#0;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#1;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
+            <element signature="n#harmony#2;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#2;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#3;n#measure#2;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#harmony#0;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#frame#0;n#harmony#0;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
+            <element signature="n#harmony#1;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#0;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#1;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#2;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
@@ -876,6 +830,7 @@
             <element signature="n#note#5;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#6;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#7;n#measure#3;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
+            <element signature="n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#harmony#0;n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#frame#0;n#harmony#1;n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
             <element signature="n#note#0;n#measure#4;n#part#0;n#score-partwise#0;n#!!top" expanded="false" />
@@ -883,30 +838,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xmlparser/mxldoc.go">
+    <entry file="file://$PROJECT_DIR$/xmlparser/parse.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="390">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="e#19#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xmlparser/fetch_all.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/xmlparser/parse_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="69" column="23" lean-forward="false" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+        <state relative-caret-position="120">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="e#19#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xmlparser/parse.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-          <folding>
-            <element signature="e#19#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
