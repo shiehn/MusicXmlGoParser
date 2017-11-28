@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+
+
 func FetchAll() []os.FileInfo {
 	files, err := ioutil.ReadDir("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\")
 	if err != nil {
