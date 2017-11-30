@@ -20,11 +20,11 @@ var _ = Describe("MxlDoc", func() {
 		})
 
 		It("should parse notes from a bar", func() {
-			Expect(ParseNotesFormBar(xmlDoc, 0)).To(Equal("r-eighth-D_4-16th-A_4-eighth-Ab4-16th-Ab4-quarter-G_4-eighth-"))
+			Expect(ParseNotesFormBar(xmlDoc, 0)).To(Equal("r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
 		})
 
 		It("should concatinate CHORDS AND NOTES", func() {
-			Expect(Parse(xmlDoc)).To(Equal("D_-minor-seventh-E_-dominant-r-eighth-D_4-16th-A_4-eighth-Ab4-16th-Ab4-quarter-G_4-eighth-"))
+			Expect(Parse(xmlDoc)).To(Equal("D_-minor-seventh-E_-dominant-r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
 		})
 
 		Context("with duration", func() {

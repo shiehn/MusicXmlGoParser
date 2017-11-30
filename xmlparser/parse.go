@@ -55,9 +55,11 @@ func ParseNotesFormBar(musicXML MXLDoc, index int) string {
 		fmt.Print("REST \n")
 		fmt.Print(note.Rest)
 */
+		dotted := strings.Contains(fmt.Sprintf("%v", note.Dot), "dot")
+
 		if strings.Contains(fmt.Sprintf("%v", note.Rest), "rest") {
 			//dur := note.Duration / GetSixteenthNote(musicXML)
-			notes = notes + "r-" + note.Type + "-"
+			notes = notes + "r-" + createDuration(note.Type, dotted) + "-"
 		} else {
 			//dur := note.Duration / GetSixteenthNote(musicXML)
 			sharpFlat := ""
@@ -70,11 +72,21 @@ func ParseNotesFormBar(musicXML MXLDoc, index int) string {
 			}
 
 			octave := strconv.Itoa(note.Pitch.Octave)
-			notes = notes + note.Pitch.Step + sharpFlat + octave +  "-" + note.Type + "-"
+			notes = notes + note.Pitch.Step + sharpFlat + octave +  "-" + createDuration(note.Type, dotted) + "-"
 		}
 	}
 
 	return notes
+}
+
+func createDuration(duration string, isDotted bool) string {
+
+	dotted := "nodot"
+	if isDotted {
+		dotted = "dot"
+	}
+
+	return fmt.Sprintf("%s-%s", duration, dotted)
 }
 
 func Parse(musicXML MXLDoc) string {

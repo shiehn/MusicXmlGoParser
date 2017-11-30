@@ -93,6 +93,7 @@ type Time struct {
 type Note struct {
 	Pitch    Pitch    `xml:"pitch"`
 	Duration int      `xml:"duration"`
+	Dot      xml.Name `xml:"dot"`
 	Voice    int      `xml:"voice"`
 	Type     string   `xml:"type"`
 	Rest     xml.Name `xml:"rest"`
