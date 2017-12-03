@@ -8,11 +8,16 @@ import (
 	"encoding/xml"
 )
 
+var (
+	FOUR_BAR_ASSETS string = "C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml"
+	ONE_BAR_ASSETS string = "C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml"
+)
+
 var _ = Describe("MxlDoc", func() {
 	Context("when parsed", func() {
 		var xmlDoc MXLDoc
 		BeforeEach(func() {
-			musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml")
+			musicXML, err := ioutil.ReadFile(FOUR_BAR_ASSETS)
 			if err != nil {
 				panic(err)
 			}
@@ -30,7 +35,7 @@ var _ = Describe("MxlDoc", func() {
 		Context("with duration", func() {
 			var xmlDoc MXLDoc
 			BeforeEach(func() {
-				musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml")
+				musicXML, err := ioutil.ReadFile(FOUR_BAR_ASSETS)
 				if err != nil {
 					panic(err)
 					fmt.Print("XML READ ERROR!!!")
@@ -84,19 +89,5 @@ var _ = Describe("MxlDoc", func() {
 		})
 	})
 
-	Context("When duration do no add up", func() {
-		var xmlDoc MXLDoc
-		BeforeEach(func() {
-			musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\missing chords.xml")
-			if err != nil {
-				panic(err)
-				fmt.Print("XML READ ERROR!!!")
-			}
-			xml.Unmarshal(musicXML, &xmlDoc)
-		})
 
-		It("should should panic", func() {
-			Expect(GetBarDuration(xmlDoc)).To(Equal("panic damnit"))
-		})
-	})
-	})
+})

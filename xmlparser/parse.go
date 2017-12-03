@@ -11,28 +11,28 @@ func GetBarDuration(musicXML MXLDoc) int {
 }
 
 func GetSixteenthNote(musicXML MXLDoc) int {
-	return musicXML.Parts[0].Bars[0].Forward.Duration/16
+	return musicXML.Parts[0].Bars[0].Forward.Duration / 16
 }
 
 func GetBarCount(musicXML MXLDoc) int {
-	return len(musicXML.Parts[0].Bars)-1
+	return len(musicXML.Parts[0].Bars) - 1
 }
 
 func ParseChordsFromBar(musicXML MXLDoc, index int) string {
 	var chords string
-	bar := musicXML.Parts[0].Bars[index + 1]
+	bar := musicXML.Parts[0].Bars[index+1]
 	for i, tag := range bar.Harmonies {
-			if tag.Print == "" {
+		if tag.Print == "" {
 
-				sharpFlat := "_"
-					if bar.Harmonies[i].Root.SharpFlat == 1 {
-						sharpFlat = "s"
-					}else if bar.Harmonies[i].Root.SharpFlat == -1 {
-						sharpFlat = "b"
-					}
+			sharpFlat := "_"
+			if bar.Harmonies[i].Root.SharpFlat == 1 {
+				sharpFlat = "s"
+			} else if bar.Harmonies[i].Root.SharpFlat == -1 {
+				sharpFlat = "b"
+			}
 
-				chords = chords + bar.Harmonies[i].Root.RootNote + sharpFlat + "-" + bar.Harmonies[i].Type + "-"
-				}
+			chords = chords + bar.Harmonies[i].Root.RootNote + sharpFlat + "-" + bar.Harmonies[i].Type + "-"
+		}
 	}
 	return chords
 }
@@ -59,7 +59,7 @@ func ParseNotesFormBar(musicXML MXLDoc, index int) string {
 
 		if strings.Contains(fmt.Sprintf("%v", note.Rest), "rest") {
 			//dur := note.Duration / GetSixteenthNote(musicXML)
-			notes = notes + "r-" + createDuration(note.Type, dotted) + "-"
+			notes = notes + "r-" + CreateDuration(note.Type, dotted) + "-"
 		} else {
 			//dur := note.Duration / GetSixteenthNote(musicXML)
 			sharpFlat := ""
@@ -72,14 +72,14 @@ func ParseNotesFormBar(musicXML MXLDoc, index int) string {
 			}
 
 			octave := strconv.Itoa(note.Pitch.Octave)
-			notes = notes + note.Pitch.Step + sharpFlat + octave +  "-" + createDuration(note.Type, dotted) + "-"
+			notes = notes + note.Pitch.Step + sharpFlat + octave + "-" + CreateDuration(note.Type, dotted) + "-"
 		}
 	}
 
 	return notes
 }
 
-func createDuration(duration string, isDotted bool) string {
+func CreateDuration(duration string, isDotted bool) string {
 
 	dotted := "nodot"
 	if isDotted {
@@ -89,14 +89,25 @@ func createDuration(duration string, isDotted bool) string {
 	return fmt.Sprintf("%s-%s", duration, dotted)
 }
 
-func Parse(musicXML MXLDoc) string {
+func Parse(musicXML MXLDoc) (string, error) {
+
 	chordsAndNotes := ""
 	barCount := GetBarCount(musicXML)
+
+	//perform validation
+	validater := Validate{
+		Bars: musicXML.Parts[0].Bars,
+	}
+
+	err := validater.CheckDurations()
+	if err != nil {
+		return "ERROR", err
+	}
+
 	for i := 0; i < barCount; i++ {
 		chordsAndNotes = chordsAndNotes + ParseChordsFromBar(musicXML, i)
 		chordsAndNotes = chordsAndNotes + ParseNotesFormBar(musicXML, i)
 	}
 
-	return chordsAndNotes
+	return chordsAndNotes, nil
 }
-
