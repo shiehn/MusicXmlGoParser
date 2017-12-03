@@ -6,9 +6,6 @@ import (
 	"io/ioutil"
 	"fmt"
 	"encoding/xml"
-
-	"github.com/MusicXmlGoParser/xmlparser"
-	"github.com/MusicXmlGoParser/validate"
 )
 
 var (
@@ -18,7 +15,7 @@ var (
 
 var _ bool = Describe("Validate", func() {
 	Context("When durations are correct", func() {
-		var xmlDoc xmlparser.MXLDoc
+		var xmlDoc MXLDoc
 		BeforeEach(func() {
 			musicXML, err := ioutil.ReadFile(FOUR_BAR_ASSETS)
 			if err != nil {

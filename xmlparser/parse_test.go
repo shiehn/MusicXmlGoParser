@@ -8,32 +8,34 @@ import (
 	"encoding/xml"
 )
 
-var (
-	FOUR_BAR_ASSETS string = "C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml"
-	ONE_BAR_ASSETS string = "C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml"
-)
-
 var _ = Describe("MxlDoc", func() {
 	Context("when parsed", func() {
 		var xmlDoc MXLDoc
+		var parser Parser
 		BeforeEach(func() {
 			musicXML, err := ioutil.ReadFile(FOUR_BAR_ASSETS)
 			if err != nil {
 				panic(err)
 			}
 			xml.Unmarshal(musicXML, &xmlDoc)
+
+			parser = Parser {
+				MusicXml:xmlDoc,
+			}
 		})
 
 		It("should parse notes from a bar", func() {
-			Expect(ParseNotesFormBar(xmlDoc, 0)).To(Equal("r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
+			Expect(parser.ParseNotesFormBar(0)).To(Equal("r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
 		})
 
 		It("should concatinate CHORDS AND NOTES", func() {
-			Expect(Parse(xmlDoc)).To(Equal("D_-minor-seventh-E_-dominant-r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
+			Expect(parser.Parse()).To(Equal("D_-minor-seventh-E_-dominant-r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
 		})
 
 		Context("with duration", func() {
 			var xmlDoc MXLDoc
+			var parser Parser
+
 			BeforeEach(func() {
 				musicXML, err := ioutil.ReadFile(FOUR_BAR_ASSETS)
 				if err != nil {
@@ -41,40 +43,45 @@ var _ = Describe("MxlDoc", func() {
 					fmt.Print("XML READ ERROR!!!")
 				}
 				xml.Unmarshal(musicXML, &xmlDoc)
+
+				parser = Parser {
+					MusicXml:xmlDoc,
+				}
 			})
 
 			It("should have bar length of 160", func() {
-				Expect(GetBarDuration(xmlDoc)).To(Equal(160))
+				Expect(parser.GetBarDuration()).To(Equal(160))
 			})
 
 			It("should have 16th note duration of 10", func() {
-				Expect(GetSixteenthNote(xmlDoc)).To(Equal(10))
+				Expect(parser.GetSixteenthNote()).To(Equal(10))
 			})
 
 			It("should have 4 bars not including first", func() {
-				Expect(GetBarCount(xmlDoc)).To(Equal(4))
+				Expect(parser.GetBarCount()).To(Equal(4))
 			})
 
 			It("should return correct bar 1 chords", func() {
-				Expect(ParseChordsFromBar(xmlDoc, 0)).To(Equal("D_-minor-seventh-E_-dominant-"))
+				Expect(parser.ParseChordsFromBar(0)).To(Equal("D_-minor-seventh-E_-dominant-"))
 			})
 
 			It("should return correct bar 2 chords", func() {
-				Expect(ParseChordsFromBar(xmlDoc, 1)).To(Equal("D_-minor-Bb-dominant-"))
+				Expect(parser.ParseChordsFromBar(1)).To(Equal("D_-minor-Bb-dominant-"))
 			})
 
 			It("should return correct bar 3 chords", func() {
-				Expect(ParseChordsFromBar(xmlDoc, 2)).To(Equal("D_-minor-seventh-B_-minor-seventh-"))
+				Expect(parser.ParseChordsFromBar(2)).To(Equal("D_-minor-seventh-B_-minor-seventh-"))
 			})
 
 			It("should return correct bar 4 chords", func() {
-				Expect(ParseChordsFromBar(xmlDoc, 3)).To(Equal("E_-minor-seventh-A_-dominant-"))
+				Expect(parser.ParseChordsFromBar(3)).To(Equal("E_-minor-seventh-A_-dominant-"))
 			})
 		})
 	})
 
 	Context("When chords are missing", func() {
 		var xmlDoc MXLDoc
+		var parser Parser
 		BeforeEach(func() {
 			musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\missing chords.xml")
 			if err != nil {
@@ -82,10 +89,13 @@ var _ = Describe("MxlDoc", func() {
 				fmt.Print("XML READ ERROR!!!")
 			}
 			xml.Unmarshal(musicXML, &xmlDoc)
+			parser = Parser {
+				MusicXml:xmlDoc,
+			}
 		})
 
 		It("should duplication the last chords", func() {
-			Expect(GetBarDuration(xmlDoc)).To(Equal("asdfasdfasdfasd"))
+			Expect(parser.GetBarDuration()).To(Equal("asdfasdfasdfasd"))
 		})
 	})
 

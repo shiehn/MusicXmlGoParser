@@ -24,7 +24,11 @@ func main() {
 			panic(err)
 		}
 
-		audioStr, err := xmlparser.Parse(xmlDoc)
+		parser := xmlparser.Parser{
+			MusicXml: xmlDoc,
+		}
+
+		audioStr, err := parser.Parse()
 		if err != nil{
 			log.Fatal(err)
 		}

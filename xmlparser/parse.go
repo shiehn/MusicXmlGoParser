@@ -6,21 +6,25 @@ import (
 	"strconv"
 )
 
-func GetBarDuration(musicXML MXLDoc) int {
-	return musicXML.Parts[0].Bars[0].Forward.Duration
+type Parser struct {
+	MusicXml MXLDoc
 }
 
-func GetSixteenthNote(musicXML MXLDoc) int {
-	return musicXML.Parts[0].Bars[0].Forward.Duration / 16
+func (p *Parser)GetBarDuration() int {
+	return p.MusicXml.Parts[0].Bars[0].Forward.Duration
 }
 
-func GetBarCount(musicXML MXLDoc) int {
-	return len(musicXML.Parts[0].Bars) - 1
+func (p *Parser)GetSixteenthNote() int {
+	return p.MusicXml.Parts[0].Bars[0].Forward.Duration / 16
 }
 
-func ParseChordsFromBar(musicXML MXLDoc, index int) string {
+func (p *Parser)GetBarCount() int {
+	return len(p.MusicXml.Parts[0].Bars) - 1
+}
+
+func (p *Parser)ParseChordsFromBar(index int) string {
 	var chords string
-	bar := musicXML.Parts[0].Bars[index+1]
+	bar := p.MusicXml.Parts[0].Bars[index+1]
 	for i, tag := range bar.Harmonies {
 		if tag.Print == "" {
 
@@ -37,9 +41,9 @@ func ParseChordsFromBar(musicXML MXLDoc, index int) string {
 	return chords
 }
 
-func ParseNotesFormBar(musicXML MXLDoc, index int) string {
+func (p *Parser)ParseNotesFormBar(index int) string {
 	index = index + 1
-	bar := musicXML.Parts[0].Bars[index]
+	bar := p.MusicXml.Parts[0].Bars[index]
 
 	var notes string
 	for _, note := range bar.Notes {
@@ -89,14 +93,14 @@ func CreateDuration(duration string, isDotted bool) string {
 	return fmt.Sprintf("%s-%s", duration, dotted)
 }
 
-func Parse(musicXML MXLDoc) (string, error) {
+func (p *Parser)Parse() (string, error) {
 
 	chordsAndNotes := ""
-	barCount := GetBarCount(musicXML)
+	barCount := p.GetBarCount()
 
 	//perform validation
 	validater := Validate{
-		Bars: musicXML.Parts[0].Bars,
+		Bars: p.MusicXml.Parts[0].Bars,
 	}
 
 	err := validater.CheckDurations()
@@ -105,8 +109,8 @@ func Parse(musicXML MXLDoc) (string, error) {
 	}
 
 	for i := 0; i < barCount; i++ {
-		chordsAndNotes = chordsAndNotes + ParseChordsFromBar(musicXML, i)
-		chordsAndNotes = chordsAndNotes + ParseNotesFormBar(musicXML, i)
+		chordsAndNotes = chordsAndNotes + p.ParseChordsFromBar(i)
+		chordsAndNotes = chordsAndNotes + p.ParseNotesFormBar(i)
 	}
 
 	return chordsAndNotes, nil
