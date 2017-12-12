@@ -29,7 +29,7 @@ var _ = Describe("MxlDoc", func() {
 		})
 
 		It("should concatinate CHORDS AND NOTES", func() {
-			Expect(parser.Parse()).To(Equal("D_-minor-seventh-E_-dominant-r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-"))
+			Expect(parser.Parse()).To(Equal("D_-minor-seventh-E_-dominant-r-eighth-dot-D_4-16th-nodot-A_4-eighth-dot-Ab4-16th-nodot-Ab4-quarter-dot-G_4-eighth-nodot-D_-minor-Bb-dominant-F_4-quarter-nodot-D_4-eighth-nodot-F_4-eighth-nodot-F_4-half-nodot-D_-minor-seventh-B_-minor-seventh-r-eighth-dot-D_4-16th-nodot-F_4-eighth-dot-A_4-16th-nodot-E_5-eighth-dot-E_5-16th-nodot-D_5-eighth-nodot-A_4-eighth-nodot-E_-minor-seventh-A_-dominant-A_4-whole-nodot-"))
 		})
 
 		Context("with duration", func() {
@@ -83,7 +83,7 @@ var _ = Describe("MxlDoc", func() {
 		var xmlDoc MXLDoc
 		var parser Parser
 		BeforeEach(func() {
-			musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\missing chords.xml")
+			musicXML, err := ioutil.ReadFile("C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\missing_chords.xml")
 			if err != nil {
 				panic(err)
 				fmt.Print("XML READ ERROR!!!")
@@ -94,8 +94,9 @@ var _ = Describe("MxlDoc", func() {
 			}
 		})
 
-		It("should duplication the last chords", func() {
-			Expect(parser.GetBarDuration()).To(Equal("asdfasdfasdfasd"))
+		It("should panic", func() {
+			_, err := parser.ParseChordsFromBar(0)
+			Eventually(err).Should(HaveOccurred())
 		})
 	})
 

@@ -4,8 +4,8 @@ import (
 	"io/ioutil"
 	"fmt"
 	"encoding/xml"
-	"github.com/MusicXmlGoParser/xmlparser"
 	"log"
+	"github.com/MusicXmlGoParser/xmlparser"
 )
 
 var musicXML = []byte(`
@@ -13,7 +13,7 @@ var musicXML = []byte(`
 
 func main() {
 	var xmlDoc xmlparser.MXLDoc
-		musicXML, err := ioutil.ReadFile("C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml")
+		musicXML, err := ioutil.ReadFile("C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml")
 		if err != nil {
 			panic(err)
 			fmt.Print("XML READ ERROR!!!")

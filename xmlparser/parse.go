@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"strconv"
+	"errors"
 )
 
 type Parser struct {
@@ -22,12 +23,11 @@ func (p *Parser)GetBarCount() int {
 	return len(p.MusicXml.Parts[0].Bars) - 1
 }
 
-func (p *Parser)ParseChordsFromBar(index int) string {
-	var chords string
+func (p *Parser)ParseChordsFromBar(index int) (string, error) {
+	var chords []string
 	bar := p.MusicXml.Parts[0].Bars[index+1]
 	for i, tag := range bar.Harmonies {
 		if tag.Print == "" {
-
 			sharpFlat := "_"
 			if bar.Harmonies[i].Root.SharpFlat == 1 {
 				sharpFlat = "s"
@@ -35,10 +35,18 @@ func (p *Parser)ParseChordsFromBar(index int) string {
 				sharpFlat = "b"
 			}
 
-			chords = chords + bar.Harmonies[i].Root.RootNote + sharpFlat + "-" + bar.Harmonies[i].Type + "-"
+			chordStr := bar.Harmonies[i].Root.RootNote + sharpFlat + "-" + bar.Harmonies[i].Type
+			chords = append(chords, chordStr)
 		}
 	}
-	return chords
+
+	if len(chords) != 2 {
+		errorMessage := fmt.Sprintf("bar %v should have exactly 2 chords but has %v", index, len(chords))
+		return "", errors.New(errorMessage)
+
+	}
+
+	return strings.Join(chords, "-") + "-", nil
 }
 
 func (p *Parser)ParseNotesFormBar(index int) string {
@@ -109,7 +117,12 @@ func (p *Parser)Parse() (string, error) {
 	}
 
 	for i := 0; i < barCount; i++ {
-		chordsAndNotes = chordsAndNotes + p.ParseChordsFromBar(i)
+	    newChords, err := 	p.ParseChordsFromBar(i)
+	    if err != nil {
+	    	panic(err)
+		}
+
+		chordsAndNotes = chordsAndNotes + newChords
 		chordsAndNotes = chordsAndNotes + p.ParseNotesFormBar(i)
 	}
 

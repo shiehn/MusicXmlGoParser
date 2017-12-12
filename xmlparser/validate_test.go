@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	FOUR_BAR_ASSETS string = "C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml"
-	ONE_BAR_ASSETS string = "C:\\GoWorkspace\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml"
+	FOUR_BAR_ASSETS string = "C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml"
+	ONE_BAR_ASSETS string = "C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml"
 )
 
 var _ bool = Describe("Validate", func() {
