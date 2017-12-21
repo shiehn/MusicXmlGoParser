@@ -106,20 +106,19 @@ func (p *Parser)Parse() (string, error) {
 	chordsAndNotes := ""
 	barCount := p.GetBarCount()
 
-	//perform validation
-	validater := Validate{
+	validator := Validate{
 		Bars: p.MusicXml.Parts[0].Bars,
 	}
 
-	err := validater.CheckDurations()
+	err := validator.CheckDurations()
 	if err != nil {
-		return "ERROR", err
+		return "", err
 	}
 
 	for i := 0; i < barCount; i++ {
-	    newChords, err := 	p.ParseChordsFromBar(i)
+	    newChords, err := p.ParseChordsFromBar(i)
 	    if err != nil {
-	    	panic(err)
+	    	return "", err
 		}
 
 		chordsAndNotes = chordsAndNotes + newChords
@@ -128,3 +127,4 @@ func (p *Parser)Parse() (string, error) {
 
 	return chordsAndNotes, nil
 }
+

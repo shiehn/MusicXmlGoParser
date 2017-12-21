@@ -3,35 +3,93 @@ package main
 import (
 	"io/ioutil"
 	"fmt"
-	"encoding/xml"
-	"log"
+		"encoding/xml"
 	"github.com/MusicXmlGoParser/xmlparser"
+	"flag"
+	"os"
+	"strings"
 )
 
-var musicXML = []byte(`
-    `)
 
 func main() {
-	var xmlDoc xmlparser.MXLDoc
-		musicXML, err := ioutil.ReadFile("C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml")
+	encode := flag.Bool("encode", false, "a bool")
+	xmlDir := flag.String("dir", "", "")
+
+	flag.Parse()
+
+	*xmlDir = formatPath(xmlDir)
+
+	fmt.Println("XXXXXXXX: " + *xmlDir)
+
+	if *xmlDir != "" {
+		fileNames, err := ioutil.ReadDir(*xmlDir)
 		if err != nil {
-			panic(err)
-			fmt.Print("XML READ ERROR!!!")
-		}
-
-		err = xml.Unmarshal(musicXML, &xmlDoc)
-		if err != nil {
+			fmt.Printf("ERROR opening: %v \n", *xmlDir)
 			panic(err)
 		}
 
-		parser := xmlparser.Parser{
-			MusicXml: xmlDoc,
-		}
+		for _, name := range fileNames {
+			if name.IsDir() {
+				fmt.Println("*****************************************************")
+				fmt.Println("*****************************************************")
+				fmt.Println("*****************************************************")
+				fmt.Printf("DIRECTORY: %v \n \n", *xmlDir + "\\" + name.Name())
 
-		audioStr, err := parser.Parse()
-		if err != nil{
-			log.Fatal(err)
-		}
+				innerFiles, err := ioutil.ReadDir(*xmlDir + "\\" + name.Name())
+				if err != nil {
+					panic(err)
+				}
 
-		fmt.Printf("OUTPUT: %s", audioStr)
+				for _, songName := range innerFiles {
+					if songName.IsDir() {
+						fmt.Println("")
+						fmt.Printf("WARNING: '%v' is a directory. SKIPPING! \n\n", songName.Name())
+						continue
+					}
+
+					fmt.Printf("FILE: %v \n",*xmlDir + "\\" + name.Name() + "\\" + songName.Name())
+					musicXML, err := ioutil.ReadFile(*xmlDir + "\\" + name.Name() + "\\" + songName.Name())
+					var xmlDoc xmlparser.MXLDoc
+					err = xml.Unmarshal(musicXML, &xmlDoc)
+					if err != nil {
+						fmt.Printf("ERROR PARSING MUSIC XML: %v \n", err)
+						os.Exit(1)
+					}
+
+					parser := xmlparser.Parser{
+						MusicXml: xmlDoc,
+					}
+
+					audioStr, err := parser.Parse()
+
+					if *encode {
+						if err != nil {
+							panic(err)
+						}
+
+						fmt.Printf("OUTPUT: %s \n\n", audioStr)
+					} else {
+						if err == nil {
+							fmt.Printf("LOOKS GOOD! \n")
+							continue
+						}
+
+						fmt.Printf("ERROR: %v \n", err)
+					}
+				}
+			}
+		}
+	}
+}
+
+func formatPath(xmlDir *string) string {
+
+	fmt.Println("VVVVV:" + *xmlDir)
+
+	if *xmlDir == "" || len(*xmlDir) < 1 {
+		message := fmt.Sprintf("ERROR malformed directory: %v \n", xmlDir)
+		panic(message)
+	}
+
+	return strings.TrimSuffix(*xmlDir, "\\")
 }
