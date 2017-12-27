@@ -84,6 +84,8 @@ func getDuration(durType string, dotted bool) int {
 			return 6
 		} else if durType == "half" {
 			return 12
+		} else if durType == "whole" {
+			return 16
 		}
 	}
 
