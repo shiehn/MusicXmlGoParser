@@ -29,6 +29,11 @@ func main() {
 		}
 
 		for _, name := range fileNames {
+
+			if shouldIgnore(name.Name()){
+				continue
+			}
+
 			if name.IsDir() {
 				fmt.Println("*****************************************************")
 				fmt.Println("*****************************************************")
@@ -80,6 +85,18 @@ func main() {
 			}
 		}
 	}
+}
+
+func shouldIgnore(fileName string) bool {
+	ignoreList := []string{".git", ".idea"}
+
+	for _, listItem := range ignoreList {
+		if strings.Contains(listItem, fileName) {
+			return true
+		}
+	}
+
+	return false
 }
 
 func formatPath(xmlDir *string) string {

@@ -3,8 +3,8 @@ package xmlparser
 import (
 	"fmt"
 	"strings"
-	"strconv"
 	"errors"
+	"strconv"
 )
 
 type Parser struct {
@@ -28,14 +28,16 @@ func (p *Parser)ParseChordsFromBar(index int) (string, error) {
 	bar := p.MusicXml.Parts[0].Bars[index+1]
 	for i, tag := range bar.Harmonies {
 		if tag.Print == "" {
-			sharpFlat := "_"
+			sharpFlat := "1"
 			if bar.Harmonies[i].Root.SharpFlat == 1 {
-				sharpFlat = "s"
+				sharpFlat = "2"
 			} else if bar.Harmonies[i].Root.SharpFlat == -1 {
-				sharpFlat = "b"
+				sharpFlat = "0"
 			}
 
-			chordStr := bar.Harmonies[i].Root.RootNote + sharpFlat + "-" + bar.Harmonies[i].Type
+			pc := PitchConvert{pitch:bar.Harmonies[i].Root.RootNote}
+			cc := ChordConvert{chordType:bar.Harmonies[i].Type}
+			chordStr := pc.convert() + sharpFlat + cc.convert()
 			chords = append(chords, chordStr)
 		}
 	}
@@ -50,55 +52,41 @@ func (p *Parser)ParseChordsFromBar(index int) (string, error) {
 }
 
 func (p *Parser)ParseNotesFormBar(index int) string {
+
 	index = index + 1
 	bar := p.MusicXml.Parts[0].Bars[index]
 
 	var notes string
 	for _, note := range bar.Notes {
-		/*
-		fmt.Print("*************************** \n")
-		fmt.Print("\n")
-		fmt.Print("PITCH ---- \n")
-		fmt.Print(note.Pitch)
-		fmt.Print("\n")
-		fmt.Print("DURATIon \n")
-		fmt.Print(note.Duration)
-		fmt.Print("\n")
-		fmt.Print("REST \n")
-		fmt.Print(note.Rest)
-*/
 		dotted := strings.Contains(fmt.Sprintf("%v", note.Dot), "dot")
+		duration := getDuration(note.Type, dotted)
 
 		if strings.Contains(fmt.Sprintf("%v", note.Rest), "rest") {
-			//dur := note.Duration / GetSixteenthNote(musicXML)
-			notes = notes + "r-" + CreateDuration(note.Type, dotted) + "-"
+			for i := 0; i<duration; i++ {
+				notes = notes + "0000-"
+			}
 		} else {
-			//dur := note.Duration / GetSixteenthNote(musicXML)
-			sharpFlat := ""
+			sharpFlat := "1"
 			if note.Pitch.Accidental == -1 {
-				sharpFlat = "b"
+				sharpFlat = "0"
 			} else if note.Pitch.Accidental == 1 {
-				sharpFlat = "s"
-			} else {
-				sharpFlat = "_"
+				sharpFlat = "2"
 			}
 
-			octave := strconv.Itoa(note.Pitch.Octave)
-			notes = notes + note.Pitch.Step + sharpFlat + octave + "-" + CreateDuration(note.Type, dotted) + "-"
+			for i := 0; i<duration; i++ {
+				lifeCycle := "1"
+				if i == 0 {
+					lifeCycle = "0"
+				}
+
+				octave := strconv.Itoa(note.Pitch.Octave)
+				pitchConv := PitchConvert{pitch: note.Pitch.Step}
+				notes = notes + pitchConv.convert() + sharpFlat + octave + lifeCycle + "-"
+			}
 		}
 	}
-
 	return notes
-}
-
-func CreateDuration(duration string, isDotted bool) string {
-
-	dotted := "nodot"
-	if isDotted {
-		dotted = "dot"
-	}
-
-	return fmt.Sprintf("%s-%s", duration, dotted)
+	//return strings.TrimSuffix(notes, "-")
 }
 
 func (p *Parser)Parse() (string, error) {
@@ -121,8 +109,7 @@ func (p *Parser)Parse() (string, error) {
 	    	return "", err
 		}
 
-		chordsAndNotes = chordsAndNotes + newChords
-		chordsAndNotes = chordsAndNotes + p.ParseNotesFormBar(i)
+		chordsAndNotes = chordsAndNotes + "61-" + newChords + p.ParseNotesFormBar(i)
 	}
 
 	return chordsAndNotes, nil
