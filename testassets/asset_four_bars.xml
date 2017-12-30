@@ -94,14 +94,19 @@
 		<measure number="2" width="203">
 			<print new-system="no"></print>
 			<attributes></attributes>
-			<harmony default-y="84.9798">
+			<harmony default-y="63.7256">
 				<root>
-					<root-step>D</root-step>
+					<root-step>B</root-step>
 				</root>
-				<kind>minor-seventh</kind>
-				<frame default-y="73.7461" valign="top">
+				<kind parentheses-degrees="yes">minor-seventh</kind>
+				<degree>
+					<degree-value>5</degree-value>
+					<degree-alter>-1</degree-alter>
+					<degree-type>alter</degree-type>
+				</degree>
+				<frame default-y="52.0307" valign="top">
 					<frame-strings>6</frame-strings>
-					<frame-frets>6</frame-frets>
+					<frame-frets>5</frame-frets>
 					<frame-note>
 						<string>6</string>
 						<fret>0</fret>
@@ -120,14 +125,14 @@
 					</frame-note>
 					<frame-note>
 						<string>2</string>
-						<fret>1</fret>
+						<fret>0</fret>
 					</frame-note>
 					<frame-note>
 						<string>1</string>
 						<fret>1</fret>
 					</frame-note>
 				</frame>
-				<offset>0</offset>
+				<offset>4</offset>
 				<staff>1</staff>
 			</harmony>
 			<harmony print-object="no" default-y="84.9798">

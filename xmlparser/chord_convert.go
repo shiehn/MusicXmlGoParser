@@ -2,6 +2,7 @@ package xmlparser
 
 type ChordConvert struct {
 	chordType string
+	degree    *Degree
 }
 
 func (cc *ChordConvert) convert() string {
@@ -11,18 +12,22 @@ func (cc *ChordConvert) convert() string {
 		return "0"
 	case "minor":
 		return "1"
-	case "diminished":
+	case "diminished", "diminished-seventh":
 		return "2"
-	case "major-seventh":
+	case "major-seventh", "major-ninth":
 		return "3"
-	case "minor-seventh":
+	case "minor-seventh", "minor-ninth":
+		if cc.degree != nil {
+			if cc.degree.DegreeValue == "5" && cc.degree.DegreeAlter == "-1" {
+				return "6"
+			}
+		}
+
 		return "4"
-	case "dominant":
+	case "dominant", "dominant-ninth":
+
 		return "5"
-		return "6"
-	case "minor-seven-flat-five??????":
-		return "7"
 	}
 
-	panic("could not match chord type in ChordConvert")
+	panic("could not match chord type in ChordConvert:" + cc.chordType)
 }

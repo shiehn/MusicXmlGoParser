@@ -69,6 +69,13 @@ type Harmony struct {
 	Print string `xml:"print-object,attr"`
 	Root Root `xml:"root"`
 	Type string `xml:"kind"`
+	Degree Degree `xml:"degree"`
+}
+
+type Degree struct {
+	DegreeValue string `xml:"degree-value"`
+	DegreeAlter string `xml:"degree-alter"`
+	DegreeType string `xml:"degree-type"`
 }
 
 // Clef represents a clef change

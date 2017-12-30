@@ -11,19 +11,19 @@ type Parser struct {
 	MusicXml MXLDoc
 }
 
-func (p *Parser)GetBarDuration() int {
+func (p *Parser) GetBarDuration() int {
 	return p.MusicXml.Parts[0].Bars[0].Forward.Duration
 }
 
-func (p *Parser)GetSixteenthNote() int {
+func (p *Parser) GetSixteenthNote() int {
 	return p.MusicXml.Parts[0].Bars[0].Forward.Duration / 16
 }
 
-func (p *Parser)GetBarCount() int {
+func (p *Parser) GetBarCount() int {
 	return len(p.MusicXml.Parts[0].Bars) - 1
 }
 
-func (p *Parser)ParseChordsFromBar(index int) (string, error) {
+func (p *Parser) ParseChordsFromBar(index int) (string, error) {
 	var chords []string
 	bar := p.MusicXml.Parts[0].Bars[index+1]
 	for i, tag := range bar.Harmonies {
@@ -35,8 +35,8 @@ func (p *Parser)ParseChordsFromBar(index int) (string, error) {
 				sharpFlat = "0"
 			}
 
-			pc := PitchConvert{pitch:bar.Harmonies[i].Root.RootNote}
-			cc := ChordConvert{chordType:bar.Harmonies[i].Type}
+			pc := PitchConvert{pitch: bar.Harmonies[i].Root.RootNote}
+			cc := ChordConvert{chordType: bar.Harmonies[i].Type, degree: &bar.Harmonies[i].Degree}
 			chordStr := pc.convert() + sharpFlat + cc.convert()
 			chords = append(chords, chordStr)
 		}
@@ -45,13 +45,12 @@ func (p *Parser)ParseChordsFromBar(index int) (string, error) {
 	if len(chords) != 2 {
 		errorMessage := fmt.Sprintf("bar %v should have exactly 2 chords but has %v", index, len(chords))
 		return "", errors.New(errorMessage)
-
 	}
 
 	return strings.Join(chords, "-") + "-", nil
 }
 
-func (p *Parser)ParseNotesFormBar(index int) string {
+func (p *Parser) ParseNotesFormBar(index int) string {
 
 	index = index + 1
 	bar := p.MusicXml.Parts[0].Bars[index]
@@ -62,7 +61,7 @@ func (p *Parser)ParseNotesFormBar(index int) string {
 		duration := getDuration(note.Type, dotted)
 
 		if strings.Contains(fmt.Sprintf("%v", note.Rest), "rest") {
-			for i := 0; i<duration; i++ {
+			for i := 0; i < duration; i++ {
 				notes = notes + "0000-"
 			}
 		} else {
@@ -73,7 +72,7 @@ func (p *Parser)ParseNotesFormBar(index int) string {
 				sharpFlat = "2"
 			}
 
-			for i := 0; i<duration; i++ {
+			for i := 0; i < duration; i++ {
 				lifeCycle := "1"
 				if i == 0 {
 					lifeCycle = "0"
@@ -89,7 +88,7 @@ func (p *Parser)ParseNotesFormBar(index int) string {
 	//return strings.TrimSuffix(notes, "-")
 }
 
-func (p *Parser)Parse() (string, error) {
+func (p *Parser) Parse() (string, error) {
 
 	chordsAndNotes := ""
 	barCount := p.GetBarCount()
@@ -98,20 +97,23 @@ func (p *Parser)Parse() (string, error) {
 		Bars: p.MusicXml.Parts[0].Bars,
 	}
 
+	key := KeyConvert{
+		Key: p.MusicXml.Parts[0].Bars[0].Atters.Key.Fifths,
+	}
+
 	err := validator.CheckDurations()
 	if err != nil {
 		return "", err
 	}
 
 	for i := 0; i < barCount; i++ {
-	    newChords, err := p.ParseChordsFromBar(i)
-	    if err != nil {
-	    	return "", err
+		newChords, err := p.ParseChordsFromBar(i)
+		if err != nil {
+			return "", err
 		}
 
-		chordsAndNotes = chordsAndNotes + "61-" + newChords + p.ParseNotesFormBar(i)
+		chordsAndNotes = chordsAndNotes + key.convert() + "-" + newChords + p.ParseNotesFormBar(i)
 	}
 
 	return chordsAndNotes, nil
 }
-
