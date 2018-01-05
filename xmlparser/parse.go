@@ -47,7 +47,7 @@ func (p *Parser) ParseChordsFromBar(index int) (string, error) {
 		return "", errors.New(errorMessage)
 	}
 
-	return strings.Join(chords, "-") + "-", nil
+	return strings.Join(chords, "*"), nil
 }
 
 func (p *Parser) ParseNotesFormBar(index int) string {
@@ -84,8 +84,7 @@ func (p *Parser) ParseNotesFormBar(index int) string {
 			}
 		}
 	}
-	return notes
-	//return strings.TrimSuffix(notes, "-")
+	return strings.TrimSuffix(notes, "-")
 }
 
 func (p *Parser) Parse() (string, error) {
@@ -112,7 +111,7 @@ func (p *Parser) Parse() (string, error) {
 			return "", err
 		}
 
-		chordsAndNotes = chordsAndNotes + key.convert() + "-" + newChords + p.ParseNotesFormBar(i)
+		chordsAndNotes = chordsAndNotes + "*" + key.convert() + "*" + newChords + "*" + p.ParseNotesFormBar(i)
 	}
 
 	return chordsAndNotes, nil

@@ -3,13 +3,13 @@ package main
 import (
 	"io/ioutil"
 	"fmt"
-		"encoding/xml"
+	"encoding/xml"
 	"github.com/MusicXmlGoParser/xmlparser"
 	"flag"
 	"os"
 	"strings"
+	"github.com/MusicXmlGoParser/xmlparser/filewriter"
 )
-
 
 func main() {
 	encode := flag.Bool("encode", false, "a bool")
@@ -21,6 +21,8 @@ func main() {
 
 	fmt.Println("XXXXXXXX: " + *xmlDir)
 
+	output := ""
+
 	if *xmlDir != "" {
 		fileNames, err := ioutil.ReadDir(*xmlDir)
 		if err != nil {
@@ -30,7 +32,7 @@ func main() {
 
 		for _, name := range fileNames {
 
-			if shouldIgnore(name.Name()){
+			if shouldIgnore(name.Name()) {
 				continue
 			}
 
@@ -38,7 +40,7 @@ func main() {
 				fmt.Println("*****************************************************")
 				fmt.Println("*****************************************************")
 				fmt.Println("*****************************************************")
-				fmt.Printf("DIRECTORY: %v \n \n", *xmlDir + "\\" + name.Name())
+				fmt.Printf("DIRECTORY: %v \n \n", *xmlDir+"\\"+name.Name())
 
 				innerFiles, err := ioutil.ReadDir(*xmlDir + "\\" + name.Name())
 				if err != nil {
@@ -52,7 +54,7 @@ func main() {
 						continue
 					}
 
-					fmt.Printf("FILE: %v \n",*xmlDir + "\\" + name.Name() + "\\" + songName.Name())
+					fmt.Printf("FILE: %v \n", *xmlDir+"\\"+name.Name()+"\\"+songName.Name())
 					musicXML, err := ioutil.ReadFile(*xmlDir + "\\" + name.Name() + "\\" + songName.Name())
 					var xmlDoc xmlparser.MXLDoc
 					err = xml.Unmarshal(musicXML, &xmlDoc)
@@ -66,6 +68,7 @@ func main() {
 					}
 
 					audioStr, err := parser.Parse()
+					output = output + audioStr
 
 					if *encode {
 						if err != nil {
@@ -85,6 +88,9 @@ func main() {
 			}
 		}
 	}
+
+	fw := filewriter.FileWriter{}
+	fw.Write(output)
 }
 
 func shouldIgnore(fileName string) bool {

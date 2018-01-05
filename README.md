@@ -15,10 +15,6 @@ Each bar consists of a 72 digit encoding
 Each beat in a bar: [NOTE-SHARP-OCATAVE-LIFECYCLE]<br>
 [g-sharp-quarter | rest-quarter | d-quarter | e-eighth | f-eight] = [7140-7141-7141-7141--0000-0000-0000-0000--4140-4141-4141-4141--5140-5141-6140-6140]
 
-
-      -- -- -- -- ]
-
-
 ##### NOTES: <br>
 0 | Rest<br>
 1 | a<br>
