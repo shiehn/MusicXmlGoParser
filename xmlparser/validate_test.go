@@ -1,16 +1,16 @@
 package xmlparser
 
 import (
-	. "github.com/onsi/gomega"
-	. "github.com/onsi/ginkgo"
-	"io/ioutil"
-	"fmt"
 	"encoding/xml"
+	"fmt"
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
+	"io/ioutil"
 )
 
 var (
 	FOUR_BAR_ASSETS string = "C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_four_bars.xml"
-	ONE_BAR_ASSETS string = "C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml"
+	ONE_BAR_ASSETS  string = "C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\asset_one_bar.xml"
 )
 
 var _ bool = Describe("Validate", func() {
@@ -25,13 +25,13 @@ var _ bool = Describe("Validate", func() {
 			xml.Unmarshal(musicXML, &xmlDoc)
 		})
 
-		It("should panic if empty bars passesing", func(){
+		It("should panic if empty bars passesing", func() {
 
 		})
 
 		It("should not panic", func() {
 			v := Validate{
-				Bars:xmlDoc.Parts[0].Bars,
+				Bars: xmlDoc.Parts[0].Bars,
 			}
 
 			Expect(v.CheckDurations()).ToNot(HaveOccurred())

@@ -1,14 +1,12 @@
 package xmlparser
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
-	"fmt"
 	"os"
 	"strings"
 )
-
-
 
 func FetchAll() []os.FileInfo {
 	files, err := ioutil.ReadDir("C:\\gocode\\src\\github.com\\MusicXmlGoParser\\testassets\\")
@@ -25,7 +23,7 @@ func FetchAll() []os.FileInfo {
 
 func filterForXml(files []os.FileInfo) (returnArray []os.FileInfo) {
 	for _, f := range files {
-		if strings.HasSuffix(f.Name(), ".xml"){
+		if strings.HasSuffix(f.Name(), ".xml") {
 			returnArray = append(returnArray, f)
 		}
 	}

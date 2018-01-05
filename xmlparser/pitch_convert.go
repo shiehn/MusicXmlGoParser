@@ -8,7 +8,7 @@ type PitchConvert struct {
 	pitch string
 }
 
-func(p *PitchConvert) convert() string{
+func (p *PitchConvert) convert() string {
 	if p == nil {
 		return "0"
 	}

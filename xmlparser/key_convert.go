@@ -4,7 +4,7 @@ type KeyConvert struct {
 	Key int
 }
 
-func(kc *KeyConvert) convert () string {
+func (kc *KeyConvert) convert() string {
 
 	switch kc.Key {
 	case 0:

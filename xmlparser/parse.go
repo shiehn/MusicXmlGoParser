@@ -1,10 +1,10 @@
 package xmlparser
 
 import (
-	"fmt"
-	"strings"
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 )
 
 type Parser struct {
@@ -88,9 +88,8 @@ func (p *Parser) ParseNotesFormBar(index int) string {
 }
 
 func (p *Parser) Parse() (string, error) {
-
-	chordsAndNotes := ""
 	barCount := p.GetBarCount()
+	barCount = p.TotalDivisibleLength(barCount)
 
 	validator := Validate{
 		Bars: p.MusicXml.Parts[0].Bars,
@@ -105,14 +104,41 @@ func (p *Parser) Parse() (string, error) {
 		return "", err
 	}
 
-	for i := 0; i < barCount; i++ {
-		newChords, err := p.ParseChordsFromBar(i)
-		if err != nil {
-			return "", err
+	chordsAndNotes := ""
+	for j := 0; j < (barCount/4); j++ {
+		chordsAndNotes = chordsAndNotes + fmt.Sprintf(key.convert()) + "^"
+
+		chords := ""
+		for i := 0; i < 4; i++ {
+			newChords, err := p.ParseChordsFromBar(i+(4*j))
+			if err != nil {
+				return "", err
+			}
+
+			chords = chords + newChords + "*"
 		}
 
-		chordsAndNotes = chordsAndNotes + "*" + key.convert() + "*" + newChords + "*" + p.ParseNotesFormBar(i)
+		notes := ""
+		for i := 0; i < 4; i++ {
+			newNotes := p.ParseNotesFormBar(i + (4 * j))
+			notes = notes + newNotes
+			notes = strings.TrimSuffix(notes, "-")
+			if i != 3 {
+				notes = notes + "+"
+			}
+		}
+
+		chordsAndNotes = chordsAndNotes + chords + notes + "#"
 	}
 
 	return chordsAndNotes, nil
+}
+
+func (p *Parser) TotalDivisibleLength(length int) int {
+	result := length - (length%4)
+	if result < 0 {
+		return 0
+	}
+
+	return result
 }

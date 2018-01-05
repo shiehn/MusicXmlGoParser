@@ -1,15 +1,15 @@
 package filewriter
 
 import (
-	"os"
-	"fmt"
 	"bufio"
+	"fmt"
+	"os"
 )
 
 type FileWriter struct {
 }
 
-func(fw *FileWriter) Write(content string) {
+func (fw *FileWriter) Write(content string) {
 	destination := "C:\\Users\\steve\\Desktop\\chord-melody-data.txt"
 
 	fileHandle, _ := os.Create(destination)

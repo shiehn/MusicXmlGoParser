@@ -1,14 +1,14 @@
 package xmlparser
 
 import (
-	"strings"
-	"fmt"
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 )
 
 type NoteDuration struct {
-	Type string
+	Type   string
 	Dotted bool
 }
 
@@ -16,7 +16,7 @@ type Validate struct {
 	Bars []Bar
 }
 
-func (v *Validate)CheckDurations() error {
+func (v *Validate) CheckDurations() error {
 	for i, bar := range v.Bars {
 		if i == 0 {
 			continue
@@ -34,7 +34,7 @@ func (v *Validate)CheckDurations() error {
 	return nil
 }
 
-func durationsFromBar(bar Bar)[]NoteDuration {
+func durationsFromBar(bar Bar) []NoteDuration {
 
 	var noteDurations []NoteDuration
 
@@ -75,7 +75,7 @@ func getDuration(durType string, dotted bool) int {
 		} else if durType == "whole" {
 			return 16
 		}
-	}else{
+	} else {
 		if durType == "16th" {
 			//not supported
 		} else if durType == "eighth" {

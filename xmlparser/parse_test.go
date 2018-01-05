@@ -1,14 +1,38 @@
 package xmlparser
 
 import (
+	"encoding/xml"
+	"fmt"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"io/ioutil"
-	"fmt"
-	"encoding/xml"
 )
 
+
+
 var _ = Describe("MxlDoc", func() {
+
+	FContext("XXX", func() {
+		It("XXX", func() {
+
+			seven := []string{"1", "1", "1", "1", "2", "2", "2"}
+			eight := []string{"1", "1", "1", "1", "2", "2", "2", "2"}
+			nine := []string{"1", "1", "1", "1", "2", "2", "2", "2", "3"}
+			ten := []string{"1", "1", "1", "1", "2", "2", "2", "2", "3", "3"}
+			eleven := []string{"1", "1", "1", "1", "2", "2", "2", "2", "3", "3", "3"}
+			twelve := []string{"1", "1", "1", "1", "2", "2", "2", "2", "3", "3", "3", "3"}
+
+			parser := Parser{MusicXml:nil}
+
+			Expect(parser.TotalDivisibleLength(len(seven))).To(Equal(4))
+			Expect(parser.TotalDivisibleLength(len(eight))).To(Equal(8))
+			Expect(parser.TotalDivisibleLength(len(nine))).To(Equal(8))
+			Expect(parser.TotalDivisibleLength(len(ten))).To(Equal(8))
+			Expect(parser.TotalDivisibleLength(len(eleven))).To(Equal(8))
+			Expect(parser.TotalDivisibleLength(len(twelve))).To(Equal(12))
+		})
+	})
+
 	Context("when parsed", func() {
 		var xmlDoc MXLDoc
 		var parser Parser
@@ -32,23 +56,15 @@ var _ = Describe("MxlDoc", func() {
 			fmt.Println(expected)
 			Expect(output).To(Equal(expected))
 
-
-
-
 			//"61-414-515-0000-0000-0000-4140-1140-1141-1141-1040-1040-1041-1041-1041-1041-1041-7140-7141-61-411-205-6140-6141-6141-6141-4140-4141-6140-6141-6140-6141-6141-6141-6141-6141-6141-6141"
-            //"61-411-205-6140-6141-6141-6141-4140-4141-6140-6141-6140-6141-6141-6141-6141-6141-6141-6141"
-
-
-
-
-
+			//"61-411-205-6140-6141-6141-6141-4140-4141-6140-6141-6140-6141-6141-6141-6141-6141-6141-6141"
 
 			//61-414-515-
 			//0000-0000-0000-4140-1140-1141-1141-1040-1040-1041-1041-1040-1041-1041-1041-1041-1041-7140
 		})
 
-		FIt("should concatinate CHORDS AND NOTES", func() {
-			output,_ := parser.Parse()
+		It("should concatinate CHORDS AND NOTES", func() {
+			output, _ := parser.Parse()
 			expected := "61-216-515-0000-0000-0000-4140-1140-1141-1141-1040-1040-1041-1041-1041-1041-1041-7140-7141-61-411-205-6140-6141-6141-6141-4140-4141-6140-6141-6140-6141-6141-6141-6141-6141-6141-6141"
 			fmt.Println("************ACTUAL:")
 			fmt.Println(output)

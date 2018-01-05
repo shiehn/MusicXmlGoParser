@@ -26,18 +26,18 @@ type Encoding struct {
 
 // Part represents a part in a piece of music
 type Part struct {
-	Id       string    `xml:"id,attr"`
-	Bars []Bar `xml:"measure"`
+	Id   string `xml:"id,attr"`
+	Bars []Bar  `xml:"measure"`
 }
 
 // Measure represents a measure in a piece of music
 type Bar struct {
-	Number int          `xml:"number,attr"`
-	Atters Attributes   `xml:"attributes"`
-	Harmonies []Harmony `xml:"harmony"`
-//	HarmonyTag []HarmonyTag `xml:"harmony"`
-	Notes  []Note       `xml:"note"`
-	Forward Forward     `xml:"forward"`
+	Number    int        `xml:"number,attr"`
+	Atters    Attributes `xml:"attributes"`
+	Harmonies []Harmony  `xml:"harmony"`
+	//	HarmonyTag []HarmonyTag `xml:"harmony"`
+	Notes   []Note  `xml:"note"`
+	Forward Forward `xml:"forward"`
 }
 
 /*
@@ -60,22 +60,22 @@ type Attributes struct {
 }
 
 type Root struct {
-	RootNote string `xml:"root-step"`
-	SharpFlat int `xml:"root-alter"`
+	RootNote  string `xml:"root-step"`
+	SharpFlat int    `xml:"root-alter"`
 }
 
 type Harmony struct {
 	Default string `xml:"default-y,attr"`
-	Print string `xml:"print-object,attr"`
-	Root Root `xml:"root"`
-	Type string `xml:"kind"`
-	Degree Degree `xml:"degree"`
+	Print   string `xml:"print-object,attr"`
+	Root    Root   `xml:"root"`
+	Type    string `xml:"kind"`
+	Degree  Degree `xml:"degree"`
 }
 
 type Degree struct {
 	DegreeValue string `xml:"degree-value"`
 	DegreeAlter string `xml:"degree-alter"`
-	DegreeType string `xml:"degree-type"`
+	DegreeType  string `xml:"degree-type"`
 }
 
 // Clef represents a clef change
