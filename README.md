@@ -1,6 +1,10 @@
 # MusicXmlGoParser
 Converts MusicXml into a machine learning friendly format
 
+### USAGE:
+
+
+
 # Encoding format
 Each bar consists of a 72 digit encoding
 ##### [key][chords][bar1][bar2][bar3][bar4]

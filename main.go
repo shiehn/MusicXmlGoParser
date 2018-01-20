@@ -1,13 +1,14 @@
 package main
 
 import (
-	"io/ioutil"
-	"fmt"
 	"encoding/xml"
-	"github.com/MusicXmlGoParser/xmlparser"
 	"flag"
+	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
+
+	"github.com/MusicXmlGoParser/xmlparser"
 	"github.com/MusicXmlGoParser/xmlparser/filewriter"
 )
 
@@ -19,7 +20,7 @@ func main() {
 
 	*xmlDir = formatPath(xmlDir)
 
-	fmt.Println("XXXXXXXX: " + *xmlDir)
+	fmt.Println("DIRECTORY: " + *xmlDir)
 
 	output := ""
 
@@ -30,9 +31,14 @@ func main() {
 			panic(err)
 		}
 
+		if len(fileNames) < 1 {
+			fmt.Printf("NO FILES FOUND IN %v\n", *xmlDir)
+		}
+
 		for _, name := range fileNames {
 
 			if shouldIgnore(name.Name()) {
+				fmt.Println("Ignoring unsuportted file: " + name.Name())
 				continue
 			}
 
