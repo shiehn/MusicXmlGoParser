@@ -43,7 +43,7 @@ func (p *Parser) ParseChordsFromBar(index int) (string, error) {
 	}
 
 	if len(chords) != 2 {
-		errorMessage := fmt.Sprintf("bar %v should have exactly 2 chords but has %v", index, len(chords))
+		errorMessage := fmt.Sprintf("bar %v should have exactly 2 chords but has %v", index+2, len(chords))
 		return "", errors.New(errorMessage)
 	}
 

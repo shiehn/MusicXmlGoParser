@@ -27,7 +27,7 @@ func (v *Validate) CheckDurations() error {
 		//fmt.Printf("Bar #%s has Valid status : %s, with duration: %s \n",strconv.Itoa(i), strconv.FormatBool(isValid), strconv.Itoa(totalDuration))
 
 		if !isValid {
-			return errors.New("BAR #" + strconv.Itoa(i) + " has INVALID durations!")
+			return errors.New("BAR #" + strconv.Itoa(i+1) + " has INVALID durations!")
 		}
 	}
 

@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
-
 	"github.com/MusicXmlGoParser/xmlparser"
 	"github.com/MusicXmlGoParser/xmlparser/filewriter"
 )
@@ -15,16 +14,17 @@ import (
 func main() {
 	encode := flag.Bool("encode", false, "a bool")
 	xmlDir := flag.String("dir", "", "")
-
 	flag.Parse()
 
-	*xmlDir = formatPath(xmlDir)
+	if *xmlDir == "" {
+		fmt.Fprint(os.Stderr, "\nUsage Example: 'go run main.go -encode=true -dir=/path/to/dataset'\n")
+		os.Exit(1)
+	}
 
+	*xmlDir = formatPath(xmlDir)
 	fmt.Println("DIRECTORY: " + *xmlDir)
 
 	output := ""
-
-	if *xmlDir != "" {
 		fileNames, err := ioutil.ReadDir(*xmlDir)
 		if err != nil {
 			fmt.Printf("ERROR opening: %v \n", *xmlDir)
@@ -35,8 +35,14 @@ func main() {
 			fmt.Printf("NO FILES FOUND IN %v\n", *xmlDir)
 		}
 
-		for _, name := range fileNames {
+		fmt.Println("WTF")
 
+		if !hasDirectories(fileNames) {
+			fmt.Printf("The Dataset dir must contain a dir for each song which inturn contains .xml files for each key transpositions\n")
+			os.Exit(1)
+		}
+
+		for _, name := range fileNames {
 			if shouldIgnore(name.Name()) {
 				fmt.Println("Ignoring unsuportted file: " + name.Name())
 				continue
@@ -91,7 +97,6 @@ func main() {
 						fmt.Printf("ERROR: %v \n", err)
 					}
 				}
-			}
 		}
 	}
 
@@ -121,4 +126,14 @@ func formatPath(xmlDir *string) string {
 	}
 
 	return strings.TrimSuffix(*xmlDir, "\\")
+}
+
+func hasDirectories(fileNames []os.FileInfo) bool {
+	count := 0
+		for _, name := range fileNames {
+			if name.IsDir() {
+				count++
+			}
+		}
+	return count > 0
 }
