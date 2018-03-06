@@ -38,8 +38,8 @@ Each beat in a bar: [NOTE-SHARP-OCATAVE-LIFECYCLE]<br>
 0-5
 
 ##### NOTE LIFE_CYCLE
-0 | START
-1 | SUSTAIN
+0 - START |
+1 - SUSTAIN
 
 ##### CHORD TYPES
 0 | maj<br>
@@ -51,8 +51,8 @@ Each beat in a bar: [NOTE-SHARP-OCATAVE-LIFECYCLE]<br>
 6 | min7b5<br>#### CHORD TYPE
 
 ##### START/SUSTAIN
-0 | START<br>
-1 | SUSTAIN<br>
+0 - START | 
+1 - SUSTAIN
 
 
  
