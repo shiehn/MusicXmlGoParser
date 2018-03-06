@@ -30,9 +30,9 @@ Each beat in a bar: [NOTE-SHARP-OCATAVE-LIFECYCLE]<br>
 7 | g<br>
 
 ##### FLAT/NATURAL/SHARP
-0 | FLAT
-1 | NATURAL
-2 | SHARP
+0 - FLAT |
+1 - NATURAL |
+2 - SHARP
 
 ##### OCTAVES
 0-5
