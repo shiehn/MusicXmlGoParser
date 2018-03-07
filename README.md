@@ -1,9 +1,9 @@
 # MusicXmlGoParser
 Converts MusicXml into a machine learning friendly format
 
-### USAGE:
-
-
+### USAGE Example:
+Generate a midi melody for a given key plus a 2 bar chord progression like so:<br> 
+```java -jar chords-to-melody-generator.jar -chords=31^313*313*313*313*613*613*715*715*```
 
 # Encoding format
 Each bar consists of a 72 digit encoding
