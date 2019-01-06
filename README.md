@@ -2,7 +2,7 @@
 Converts MusicXml into a machine learning friendly format
 
 ### USAGE Example:
-Create encode all the data into a file like so:<br> 
+Encode data into a file like so:<br> 
 ```go run main.go -encode=true -dir=/chord-melody-dataset -output=my-encoded-data.txt```
 
 # Encoding format
