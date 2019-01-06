@@ -9,8 +9,7 @@ import (
 type FileWriter struct {
 }
 
-func (fw *FileWriter) Write(content string) {
-	destination := "chord-melody-data.txt"
+func (fw *FileWriter) Write(content string, destination string) { 
 
 	fileHandle, _ := os.Create(destination)
 	writer := bufio.NewWriter(fileHandle)

@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"path/filepath"
 	"github.com/MusicXmlGoParser/xmlparser"
 	"github.com/MusicXmlGoParser/xmlparser/filewriter"
 )
@@ -14,6 +15,7 @@ import (
 func main() {
 	encode := flag.Bool("encode", false, "a bool")
 	xmlDir := flag.String("dir", "", "")
+	fileDestination := flag.String("output", "chord-melody-data.txt", "")
 	flag.Parse()
 
 	if *xmlDir == "" {
@@ -52,9 +54,9 @@ func main() {
 				fmt.Println("*****************************************************")
 				fmt.Println("*****************************************************")
 				fmt.Println("*****************************************************")
-				fmt.Printf("DIRECTORY: %v \n \n", *xmlDir+"\\"+name.Name())
+				fmt.Printf("DIRECTORY: %v \n \n", filepath.Join(*xmlDir, name.Name()))
 
-				innerFiles, err := ioutil.ReadDir(*xmlDir + "\\" + name.Name())
+				innerFiles, err := ioutil.ReadDir(filepath.Join(*xmlDir, name.Name()))
 				if err != nil {
 					panic(err)
 				}
@@ -66,8 +68,8 @@ func main() {
 						continue
 					}
 
-					fmt.Printf("FILE: %v \n", *xmlDir+"\\"+name.Name()+"\\"+songName.Name())
-					musicXML, err := ioutil.ReadFile(*xmlDir + "\\" + name.Name() + "\\" + songName.Name())
+					fmt.Printf("FILE: %v \n", filepath.Join(*xmlDir, name.Name(), songName.Name()))
+					musicXML, err := ioutil.ReadFile(filepath.Join(*xmlDir, name.Name(), songName.Name()))
 					var xmlDoc xmlparser.MXLDoc
 					err = xml.Unmarshal(musicXML, &xmlDoc)
 					if err != nil {
@@ -100,8 +102,9 @@ func main() {
 		}
 	}
 
+	fmt.Println(*fileDestination)
 	fw := filewriter.FileWriter{}
-	fw.Write(output)
+	fw.Write(output, *fileDestination)
 }
 
 func shouldIgnore(fileName string) bool {
